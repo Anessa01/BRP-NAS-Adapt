@@ -215,7 +215,7 @@ def main(outdir, metric, model_name, device_name, fix=False, framework=None, mod
         if results_file.exists():
             rfile += 1
 
-    total_points = model_module.get_total_models()
+    total_points = model_module.get_total_models()  #first difference
     models_iter = model_module.get_models_iter(start=point)
     models_ctor = model_module.get_models_ctor(target_config, model_args)
 
@@ -316,7 +316,7 @@ if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', type=str, default='nasbench201', help='Model family to run, should a name of one of the packages under eagle.models')
-    parser.add_argument('--device', type=str, required=True, help='Device on which the models will be run, should be a name of one of the packages under eagle.device_runner')
+    parser.add_argument('--device', type=str, default='desktop', help='Device on which the models will be run, should be a name of one of the packages under eagle.device_runner')
     parser.add_argument('--metric', type=str, default='latency', help='Metric to measure. Default: latency.')
     parser.add_argument('--cfg', type=str, default='configs/measurements/desktop_nasbench201_local.yaml', help='Configuration file for device and model packages')
     parser.add_argument('--expdir', type=str, default='results', help='Folder in which the results of measurements will be saved. Default: results')
