@@ -47,8 +47,8 @@ def calc_stats(values):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('results', help='File with results -- you can use "combine.py" script to combine multiple files into one')
-    parser.add_argument('--out', '-o', required=True, help='Output file')
+    parser.add_argument('results', default='results/nasbench101/latency/desktop/results/results0.pickle', help='File with results -- you can use "combine.py" script to combine multiple files into one')
+    parser.add_argument('--out', '-o', default='raw', help='Output file')
     args = parser.parse_args()
 
     data = pickle.loads(pathlib.Path(args.results).read_bytes())

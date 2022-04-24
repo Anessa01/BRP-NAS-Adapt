@@ -72,6 +72,9 @@ def get_matrix_and_ops(g, prune=True, keep_dims=False):
             prune : remove dangling nodes that only connected to zero ops
             keep_dims : keep the original matrix size after pruning
     '''
+    # Nasbench101 restrictions: 7 vecs at most
+    if 1 not in g and 0 not in g:
+        return None, None
 
     matrix = [[0 for _ in range(8)] for _ in range(8)]
     labels = [None for _ in range(8)]
@@ -147,6 +150,10 @@ def get_matrix_and_ops(g, prune=True, keep_dims=False):
         for row in matrix:
             assert len(row) == verts
     
+    #Nasbench101 restrictions: 9 arcs at most
+    if len([i for j in matrix for i in j if i==1]) > 9:
+        return None, None
+
     return matrix, labels
 
 def get_adjacency_and_features(matrix, labels):

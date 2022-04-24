@@ -22,7 +22,7 @@ import argparse
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('results_folder', help='Folder with measurements files')
+    parser.add_argument('results_folder',default='results/nasbench101/latency/desktop/results', help='Folder with measurements files')
     parser.add_argument('--pattern', '-p', default='results*.pickle', help='Results pattern')
     parser.add_argument('--out', '-o', required=True, help='Name of the output file to store combined results')
     args = parser.parse_args()

@@ -255,7 +255,7 @@ def build_model(arch_vector, input_size=(1,32,32,3), stacks_count=3, cells_count
             net = tf.expand_dims(net, 0)
 
 
-    with tf.variable_scope('nasbench201_dnn'):
+    with tf.variable_scope('nasbench101_dnn'):
         # Initial stem convolution
         with tf.variable_scope('stem'):
             net = tf.keras.layers.Conv2D(
@@ -408,6 +408,7 @@ def build_and_convert_to_tflite(arch_vector, graph_dir=None, output_file=None, c
         return tf_utils.convert_to_tflite(graph, [input_placeholder], [logits], output_file=output_file, checkpoint=checkpoint, quantize_weights=quantize_weights, quantize_activations=quantize_activations)
     else:
         return None
+    
 
 
 def build_and_convert_to_trt(arch_vector, graph_dir=None, output_file=None, checkpoint=None, quantize_weights=True, quantize_activations=True, **kwargs):
